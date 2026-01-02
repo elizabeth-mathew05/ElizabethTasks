@@ -1,0 +1,257 @@
+/* Trabook Landing Page CSS */
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 60px 0 60px;
+    background: transparent;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.logo-icon {
+    font-size: 1.2em;
+    margin-left: 4px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+.nav-links a:hover {
+    color: #FA7436;
+}
+.nav-actions {
+    display: flex;
+    gap: 16px;
+}
+.login {
+    color: #FA7436;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 8px;
+}
+.signup {
+    background: #FA7436;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+.signup:hover {
+    background: #d95e1e;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 60px 0 60px;
+    min-height: 80vh;
+    position: relative;
+}
+.hero-content {
+    max-width: 500px;
+}
+.hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    line-height: 1.2;
+}
+.highlight {
+    color: #FA7436;
+}
+.subtitle {
+    color: #888;
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+}
+.cta-btn {
+    background: #fff;
+    color: #FA7436;
+    border: 2px solid #FA7436;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.cta-btn:hover {
+    background: #FA7436;
+    color: #fff;
+}
+.hero-image-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 400px;
+}
+.main-hero-img {
+    z-index: 2;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(250, 116, 54, 0.15);
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.main-hero-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.feature-card {
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 120px;
+    font-size: 0.95rem;
+}
+.feature-card .icon {
+    font-size: 1.5em;
+}
+.best-tour {
+    top: 20px;
+    left: -60px;
+}
+.explore {
+    bottom: 40px;
+    right: -80px;
+    min-width: 180px;
+}
+.reviews {
+    bottom: -30px;
+    left: 40px;
+}
+.feature-title {
+    font-weight: 700;
+    color: #222;
+    font-size: 1.05em;
+}
+.feature-desc {
+    color: #888;
+    font-size: 0.95em;
+}
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 20px 0 20px;
+    }
+    .nav-links {
+        gap: 18px;
+        font-size: 0.98rem;
+    }
+    .hero-section {
+        flex-direction: column;
+        padding: 40px 20px 0 20px;
+        min-height: unset;
+        align-items: flex-start;
+    }
+    .hero-content {
+        max-width: 100%;
+        width: 100%;
+    }
+    .hero-image-block {
+        margin-top: 40px;
+        min-width: unset;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .main-hero-img {
+        width: 220px;
+        height: 220px;
+    }
+    .feature-card {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+    .best-tour {
+        top: 0;
+        left: 0;
+    }
+    .explore {
+        bottom: 0;
+        right: 0;
+    }
+    .reviews {
+        bottom: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar, .hero-section {
+        padding: 12px 4vw 0 4vw;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .nav-links {
+        gap: 8px;
+        font-size: 0.95rem;
+        flex-wrap: wrap;
+    }
+    .nav-actions {
+        gap: 8px;
+    }
+    .hero-content h1 {
+        font-size: 1.1rem;
+    }
+    .subtitle {
+        font-size: 0.98rem;
+    }
+    .main-hero-img {
+        width: 120px;
+        height: 120px;
+    }
+    .feature-card {
+        font-size: 0.8rem;
+        padding: 7px 8px;
+        min-width: 80px;
+    }
+    .best-tour, .explore, .reviews {
+        position: static;
+        margin: 8px 0;
+        display: inline-flex;
+    }
+    .hero-image-block {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+    }
+}
