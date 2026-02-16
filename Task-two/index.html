@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Trabook - Landing Page</title>
+</head>
+<body class="bg-white text-gray-800">
+    <header class="flex items-center justify-between px-8 shadow-md bg-white">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <img src="assets/Askmeidentity 2.svg" alt="Logo" class="h-14 w-18" />
+        </div>
+        <!-- Icons and Actions -->
+        <div class="flex items-center gap-4">
+            <!-- Icons -->
+            <div class="flex items-center gap-3 text-gray-700 text-lg">
+                <!-- Wallet Icon -->
+                <img src="assets/folder-icon.svg" alt="Wallet" class="h-5 w-5" />
+                <!-- User Icon -->
+                <img src="assets/user-icon.svg" alt="User" class="h-5 w-5" />
+                <!-- Search Icon -->
+                <img src="assets/search-icon.svg" alt="Search" class="h-5 w-5" />
+            </div>
+            <!-- Divider -->
+            <div class="h-8 border-l border-blue-300 mx-2"></div>
+            <!-- Login/Signup -->
+            <div class="flex items-center gap-2">
+                <a href="#" class="text-gray-700 px-2">Login</a>
+                <a href="#" class="ml-2 px-5 py-2 rounded bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold shadow hover:from-blue-600 hover:to-purple-600 transition">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="relative flex flex-col md:flex-row items-center justify-between px-0 md:px-8 py-0 md:py-0 min-h-[600px] overflow-hidden">
+            <!-- Gradient background absolutely positioned -->
+            <div class="absolute inset-0 z-0"
+                 style="background: radial-gradient(ellipse 90% 100% at 88% 60%, #fff 0%, #b8b6f3 18%, #4e2bfa 48%, #4A16BD 78%, #04016C 92%);">
+            </div>
+            <!-- Left Content -->
+            <div class="flex-1 z-10 max-w-xl pl-8 pt-10 pb-16">
+                <p class="uppercase tracking-widest text-xs text-[#b8b6f3] mb-4 font-semibold">Successful coaches are visionaries</p>
+                <div class="text-2xl md:text-4xl font-extrabold mb-8 leading-tight text-white drop-shadow-lg font-[Montserrat]">
+                <br> Good <span class="text-[#2b6bfa]">coaching</span><br>
+                is good teaching &<br>
+                nothing else.
+                </div>
+            <div class="flex flex-wrap gap-4 mb-8">
+                <a href="#" class="px-7 py-3 bg-white text-[#2b6bfa] font-bold rounded-lg shadow hover:bg-[#f3f3ff] transition text-lg border border-[#2b6bfa]">View Courses</a>
+                <a href="#" class="px-7 py-3 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-[#2b6bfa] transition text-lg">Get Free Consultation</a>
+            </div>
+            <form class="flex items-center bg-white rounded-lg shadow-lg px-2 py-2 max-w-md w-full mb-8">
+                <input type="text" placeholder="What do you want to learn today?" class="flex-1 px-4 py-2 bg-transparent outline-none text-gray-700 text-base" />
+                <button type="submit" class="px-6 py-2 bg-[#2b6bfa] text-white rounded-lg font-semibold hover:bg-[#4e2bfa] transition text-base">Search</button>
+            </form>
+        </div>
+        <!-- Testimonial Card (Desktop only) -->
+        <div class="hidden md:flex flex-col items-center absolute left-[55%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20">
+            <div class="relative w-96 border-l-2 border-[#2b6bfa] pl-8">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="font-bold text-white">Shyam</span>
+                </div>
+                <div class="flex items-start gap-2 mb-1">
+                    <span class="text-[#2b6bfa] mt-1">
+                        <!-- Quote icon SVG -->
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path d="M7.17 13.41A4.5 4.5 0 0 1 3 9V7A4 4 0 0 1 7 3h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 0-1 1v2a2.5 2.5 0 0 0 2.5 2.5 1 1 0 0 1 0 2A4.5 4.5 0 0 1 7.17 13.41zm8 0A4.5 4.5 0 0 1 11 9V7a4 4 0 0 1 4-4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 0-1 1v2a2.5 2.5 0 0 0 2.5 2.5 1 1 0 0 1 0 2A4.5 4.5 0 0 1 15.17 13.41z"/></svg>
+                    </span>
+                    <p class="text-white text-sm font-normal text-left leading-snug">
+                        In a coaching role, you ask the questions and rely more on your staff, who become the experts, to provide the information.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 text-[#2b6bfa] text-xs font-semibold">
+                    4.9
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Circles (optional, for style) -->
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background: radial-gradient(ellipse 90% 100% at 88% 60%, #fff 0%, #b8b6f3 18%, #4e2bfa 48%, #4A16BD 78%, #04016C 92%);"></div>
+        <!-- Right Image -->
+        <div class="flex-1 flex justify-end z-10 pr-8 pt-10 relative">
+            <img src="assets/brunette-woman-hugging-laptop 1.svg" alt="Coach"
+                class="w-[220px] md:w-[260px] lg:w-[300px] h-[320px] md:h-[380px] lg:h-[420px] object-cover relative z-10 rounded-[160px/320px] md:rounded-[190px/380px] lg:rounded-[210px/420px] shadow-xl" />
+        </div>
+        <!-- Trusted By Logos Bar -->
+        <div class="w-full absolute bottom-0 left-0 z-30">
+            <div class="w-full flex flex-row justify-center items-center gap-10 py-3 rounded-b-lg"
+                style="background: linear-gradient(90deg, #4A16BD 0%, #2b6bfa 100%);">
+                <img src="assets/spotify.svg" alt="Spotify" class="h-5 mx-4" />
+                <img src="assets/amazon.svg" alt="Amazon" class="h-5 mx-4" />
+                <img src="assets/spotify.svg" alt="Spotify" class="h-5 mx-4" />
+                <img src="assets/cisco.svg" alt="Cisco" class="h-5 mx-4" />
+                <img src="assets/logitech.svg" alt="Logitech" class="h-5 mx-4" />
+                <img src="assets/amazon.svg" alt="Amazon" class="h-5 mx-4" />
+            </div>
+        </div>
+    </section>
+
+
+    <section id="courses" class="py-16 px-8 bg-gray-50">
+        <h2 class="text-3xl font-bold text-center mb-2">Featured<span class="text-blue-500"> Course</span></h2>
+        <p class="text-gray-600 text-center mb-8">THE FEATURED COURSES ARE WE INVENTED OUR TEACHING PART</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course1.svg" alt="Motion Graphics Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>1,957 Students</span>
+                        <span>01h 59m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Motion Graphics: Create a Nice Typography Animation</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course2.svg" alt="PHP Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>9,575 Students</span>
+                        <span>01h 59m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Advance PHP knowledge with JS to make smart web</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course3.svg" alt="Education Software Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>458 Students</span>
+                        <span>03h 00m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Education Software and PHP and JS System Script</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course4.svg" alt="Financial Analysis Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>5,457 Students</span>
+                        <span>01h 49m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">The Complete Financial Analyst Training & Investing</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course5.svg" alt="Instagram Marketing Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>595 Students</span>
+                        <span>01h 49m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Marketing 2023: Complete Guide To Instagram Growth</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+                <img src="assets/course6.svg" alt="3D Modelling Course" class="w-full rounded-t-lg" />
+                <div class="p-4">
+                    <div class="flex justify-between items-center mb-2 text-sm text-gray-500">
+                        <span>458 Students</span>
+                        <span>03h 00m</span>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Learn 3D Modelling and Design for Beginners</h3>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-1 text-gray-500">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <div class="text-lg font-bold text-gray-800">
+                            Rs.499
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-8">
+            <button class="px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition text-lg shadow-lg">
+                Explore courses
+            </button>
+        </div>
+    </section>
+
+    <section class="py-16 px-8 relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <!-- Decorative circles -->
+        <div class="absolute top-0 left-0 w-64 h-64 rounded-full border border-white/20" style="transform: translate(-50%, -50%);"></div>
+        <div class="absolute top-1/2 left-0 w-32 h-32 rounded-full border border-white/10" style="transform: translate(-25%, -50%);"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-4xl font-bold text-center text-white mb-4">
+                Why <span class="text-blue-200">learn</span> with our courses?
+            </h2>
+            <p class="text-white/80 text-center mb-16 text-lg">
+                We are providing the best courses and top classes.And<br>
+                extradinery placement training.....
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-16 text-center text-white">
+                <!-- Feature 1 -->
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-16 h-16 mb-6 flex items-center justify-center">
+                        <img src="assets/learn.svg" alt="Learn" class="w-12 h-12" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">01. Learn</h3>
+                    <p class="text-white/80 leading-relaxed">
+                        Learn continually. There is always<br>
+                        "one more thing" to learn.
+                    </p>
+                </div>
+                
+                <!-- Vertical dotted line separator 1 -->
+                <div class="hidden md:block w-px h-32 border-l-2 border-dotted border-white/40"></div>
+                
+                <!-- Feature 2 -->
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-16 h-16 mb-6 flex items-center justify-center">
+                        <img src="assets/graduate.svg" alt="Graduate" class="w-12 h-12" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">02. Graduate</h3>
+                    <p class="text-white/80 leading-relaxed">
+                        Be bold,be courageous,<br>
+                        be your best.
+                    </p>
+                </div>
+                
+                <!-- Vertical dotted line separator 2 -->
+                <div class="hidden md:block w-px h-32 border-l-2 border-dotted border-white/40"></div>
+                
+                <!-- Feature 3 -->
+                <div class="flex flex-col items-center flex-1">
+                    <div class="w-16 h-16 mb-6 flex items-center justify-center">
+                        <img src="assets/work.svg" alt="Work" class="w-12 h-12" />
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">03. Work</h3>
+                    <p class="text-white/80 leading-relaxed">
+                        Great companies are built in<br>
+                        the office,with hard work put<br>
+                        in by team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-8 bg-gradient-to-b from-sky-200 to-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-4">Top <span class="text-blue-500">Categories</span></h2>
+            <p class="text-gray-600 text-center mb-12 text-lg">
+                100+ unique online course list designs
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Digital Marketing -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat1.svg" alt="Digital Marketing" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">Digital Marketing</h3>
+                    <p class="text-gray-600 text-xs font-medium">25 Courses</p>
+                </div>
+
+                <!-- Web Development -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat2.svg" alt="Web Development" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">Web Development</h3>
+                    <p class="text-gray-600 text-xs font-medium">16 Courses</p>
+                </div>
+
+                <!-- Art & Humanities -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat3.svg" alt="Art & Humanities" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">Art & Humanities</h3>
+                    <p class="text-gray-600 text-xs font-medium">76 Courses</p>
+                </div>
+
+                <!-- Personal Development -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat4.svg" alt="Personal Development" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">Personal Development</h3>
+                    <p class="text-gray-600 text-xs font-medium">22 Courses</p>
+                </div>
+
+                <!-- IT and Software -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat5.svg" alt="IT and Software" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">IT and Software</h3>
+                    <p class="text-gray-600 text-xs font-medium">110 Courses</p>
+                </div>
+
+                <!-- Graphic Design -->
+                <div class="bg-white rounded-xl shadow-lg p-4 text-center hover:shadow-xl transition-shadow h-64 flex flex-col justify-center">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <img src="assets/top-cat6.svg" alt="Graphic Design" class="w-8 h-8" />
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-800 mb-1">Graphic Design</h3>
+                    <p class="text-gray-600 text-xs font-medium">85 Courses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 px-8 bg-gray-50">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-0 text-left">What people say</h2>
+                <h2 class="text-3xl font-bold text-blue-500 mb-2 text-left">about us.</h2>
+                <p class="text-gray-600 mb-6 text-left">Our Clients send us a bunch of smiles with our services and we love them.</p>
+                <div class="flex gap-2">
+                    <button class="w-10 h-10 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-100 flex items-center justify-center">&larr;</button>
+                    <button class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">&rarr;</button>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col gap-4">
+                <div class="bg-white rounded-lg shadow p-6 flex items-center gap-4">
+                    <img src="assets/user.svg" alt="Mike Taylor" class="w-16 h-16 rounded-full" />
+                    <div>
+                        <p class="italic text-gray-700 mb-2">“On the Windows talking painted posture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.”</p>
+                        <div class="font-semibold">Mike taylor <span class="text-gray-500 font-normal">- Lahore, Pakistan</span></div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-6 text-gray-400">
+                    <p>Chris Thomas<br><span class="text-gray-500">CEO of Red Button</span></p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-16 px-8 ">
+            <div class="mx-16 my-8 py-8 relative overflow-hidden rounded-3xl max-w-4xl mx-auto" style="background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);">
+            <!-- Floating user avatars -->
+            <div class="absolute top-10 left-8 w-16 h-16 rounded-full bg-white p-2 shadow-lg">
+                <img src="assets/user1.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <div class="absolute top-32 right-12 w-12 h-12 rounded-full bg-white p-1 shadow-lg">
+                <img src="assets/user2.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <div class="absolute bottom-32 left-16 w-14 h-14 rounded-full bg-white p-2 shadow-lg">
+                <img src="assets/user3.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <div class="absolute bottom-16 right-8 w-16 h-16 rounded-full bg-white p-2 shadow-lg">
+                <img src="assets/user4.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <div class="absolute top-20 right-24 w-10 h-10 rounded-full bg-white p-1 shadow-lg">
+                <img src="assets/user5.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+            <div class="absolute bottom-20 left-8 w-12 h-12 rounded-full bg-white p-1 shadow-lg">
+                <img src="assets/user6.svg" alt="User Avatar" class="w-full h-full rounded-full object-cover" />
+            </div>
+
+            <div class="max-w-2xl mx-auto text-center relative z-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Subscribe For Get Update</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Every New Courses</h2>
+                <p class="text-white/80 mb-8 text-lg">20k+ students daily learn with Eduvi. Subscribe for new courses.</p>
+                
+                <div class="flex flex-col sm:flex-row max-w-md mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-3">
+                    <input type="email" placeholder="enter your email" class="flex-1 px-6 py-4 bg-transparent text-white placeholder-white/70 outline-none rounded-xl" />
+                    <button type="submit" class="px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition mt-2 sm:mt-0 sm:ml-2">Subscribe</button>
+                </div>
+            </div>
+            </div>
+            <div class="mx-16 my-8 py-8 relative overflow-hidden rounded-3xl max-w-4xl mx-auto"><img src="assets/girlWithlap.svg" alt="girlWithlap" class="w-full h-auto" /></div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 px-8 bg-gradient-to-br from-purple-50 to-blue-50 relative overflow-hidden">
+            <!-- Decorative circle -->
+            <div class="absolute top-10 left-10 w-32 h-32 bg-blue-200 rounded-full opacity-30"></div>
+            
+            <div class="max-w-6xl mx-auto relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-blue-600 mb-4">Testimonials</h2>
+                    <p class="text-gray-600 text-lg">What our student say about us</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-center items-start gap-8 mb-8 relative">
+                    <!-- Testimonial Card 1 - Lower position -->
+                    <div class="relative">
+                        <!-- User Avatar positioned to partially overlap card -->
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                            <img src="assets/user1.svg" alt="Student" class="w-16 h-16 rounded-full border-4 border-white shadow-lg" />
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow w-80 mt-12 text-center pt-12">
+                            <p class="text-gray-700 mb-6 leading-relaxed text-sm">
+                                Such an amazing traineer and easily understand the entire syllabus, and the guidance will be super and good to the way of explaning.
+                            </p>
+                            <div class="flex items-center justify-center">
+                                <div class="flex text-yellow-400 text-lg">
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span class="text-gray-300">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 2 (Center - Elevated) -->
+                    <div class="relative">
+                        <!-- User Avatar positioned to partially overlap card -->
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                            <img src="assets/user2.svg" alt="Student" class="w-16 h-16 rounded-full border-4 border-white shadow-lg" />
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-xl p-8 border-2 w-80 z-10 relative text-center pt-12">
+                            <p class="text-gray-700 mb-6 leading-relaxed text-sm">
+                                Such an amazing traineer and easily understand the entire syllabus, and the guidance will be super and good to the way of explaning.
+                            </p>
+                            <div class="flex items-center justify-center">
+                                <div class="flex text-yellow-400 text-lg">
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span class="text-gray-300">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial Card 3 - Lower position -->
+                    <div class="relative">
+                        <!-- User Avatar positioned to partially overlap card -->
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                            <img src="assets/user3.svg" alt="Student" class="w-16 h-16 rounded-full border-4 border-white shadow-lg" />
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow w-80 mt-12 text-center pt-12">
+                            <p class="text-gray-700 mb-6 leading-relaxed text-sm">
+                                Such an amazing traineer and easily understand the entire syllabus, and the guidance will be super and good to the way of explaning.
+                            </p>
+                            <div class="flex items-center justify-center">
+                                <div class="flex text-yellow-400 text-lg">
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                    <span>★</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="flex justify-center space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-blue-600"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-colors"></button>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="absolute bottom-8 right-8 flex space-x-2">
+                    <button class="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:shadow-xl transition-shadow">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button class="w-10 h-10 rounded-full bg-blue-600 shadow-lg flex items-center justify-center hover:shadow-xl transition-shadow">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-900 text-gray-200 py-12">
+            <div class="max-w-6xl mx-auto px-8 flex flex-col md:flex-row gap-12">
+                <div class="flex-1">
+                    <div class="text-2xl font-bold flex items-center gap-2 mb-2">Trabook <span class="ml-1">✈️</span></div>
+                    <p class="mb-4 text-gray-400">Book your trip in minute, get full Control for much longer.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-blue-400">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-pink-400">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-blue-400">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-[2] grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-semibold mb-2">Company</h4>
+                        <ul class="space-y-1 text-gray-400">
+                            <li><a href="#" class="hover:text-white">About</a></li>
+                            <li><a href="#" class="hover:text-white">Careers</a></li>
+                            <li><a href="#" class="hover:text-white">Logistic</a></li>
+                            <li><a href="#" class="hover:text-white">Privacy & Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Contact</h4>
+                        <ul class="space-y-1 text-gray-400">
+                            <li><a href="#" class="hover:text-white">Help/FAQ</a></li>
+                            <li><a href="#" class="hover:text-white">Press</a></li>
+                            <li><a href="#" class="hover:text-white">Affiliates</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">More</h4>
+                        <ul class="space-y-1 text-gray-400">
+                            <li><a href="#" class="hover:text-white">Press Centre</a></li>
+                            <li><a href="#" class="hover:text-white">Our Blog</a></li>
+                            <li><a href="#" class="hover:text-white">Low fare tips</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="max-w-6xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400">&copy; Trabook 2022. All rights reserved.</p>
+                    <p class="text-gray-400">Terms & Conditions</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
