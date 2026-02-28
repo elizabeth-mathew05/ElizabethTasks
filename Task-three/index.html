@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"> <!-- Updated meta charset -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Income Expense Calculator</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			.totals-font { font-family: Arial, Segoe UI, sans-serif; } /* Updated font family */
+		</style>
+    
+</head>
+<body class="bg-gray-100 min-h-screen">
+	<div class="max-w-md mx-auto mt-8 p-4 bg-white rounded shadow">
+		<div class="flex justify-between items-center mb-4 text-sm text-center border rounded px-2 py-2 bg-gray-50">
+			<div>Income: <span id="totalIncome">0</span></div>
+			<div>Expense: <span id="totalExpense">0</span></div>
+			<div>Balance: <span id="balance">0</span></div>
+		</div>
+		<h1 class="text-xl font-bold mb-4 text-center">Income & Expense Tracker</h1>
+		<form id="entryForm" class="flex flex-col gap-2 mb-4">
+			<input id="description" type="text" placeholder="Description" class="border rounded px-2 py-1" required>
+			<input id="amount" type="number" placeholder="Amount" class="border rounded px-2 py-1" required>
+			<select id="type" class="border rounded px-2 py-1">
+				<option value="income">Income</option>
+				<option value="expense">Expense</option>
+			</select>
+			<div class="flex gap-2">
+				<button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded">Add</button>
+				<button type="button" onclick="resetForm()" class="bg-gray-200 text-gray-700 px-4 py-1 rounded">Reset All</button>
+				<button type="button" onclick="clearInputs()" class="bg-gray-100 text-gray-700 px-4 py-1 rounded">Clear Fields</button>
+			</div>
+		</form>
+		<div class="flex gap-2 justify-center mb-4">
+			<label><input type="radio" name="filter" value="all" checked> All</label>
+			<label><input type="radio" name="filter" value="income"> Income</label>
+			<label><input type="radio" name="filter" value="expense"> Expense</label>
+		</div>
+		<table class="w-full text-sm border">
+			<thead>
+				<tr class="bg-gray-100">
+					<th class="py-2 px-3 text-left">Desc</th>
+					<th class="py-2 px-3 text-right">Amt</th>
+					<th class="py-2 px-3 text-center">Type</th>
+					<th class="py-2 px-3 text-center">Actions</th>
+				</tr>
+			</thead>
+			<tbody id="entriesList"></tbody>
+		</table>
+	</div>
+	<script>
+		// Simple state and localStorage
+		let entries = [];
+		let editId = null;
+		const entryForm = document.getElementById('entryForm');
+		const description = document.getElementById('description');
+		const amount = document.getElementById('amount');
+		const type = document.getElementById('type');
+		const entriesList = document.getElementById('entriesList');
+		const totalIncome = document.getElementById('totalIncome');
+		const totalExpense = document.getElementById('totalExpense');
+		const balance = document.getElementById('balance');
+		document.querySelectorAll('input[name="filter"]').forEach(radio => {
+			radio.addEventListener('change', renderEntries);
+		});
+		function saveEntries() {
+			localStorage.setItem('entries', JSON.stringify(entries));
+		}
+		function loadEntries() {
+			const data = localStorage.getItem('entries');
+			entries = data ? JSON.parse(data) : [];
+		}
+		function updateTotals() {
+			const income = entries.filter(e => e.type === 'income').reduce((sum, e) => sum + e.amount, 0);
+			const expense = entries.filter(e => e.type === 'expense').reduce((sum, e) => sum + e.amount, 0);
+			totalIncome.textContent = income ? income.toLocaleString() : '0';
+			totalExpense.textContent = expense ? expense.toLocaleString() : '0';
+			const net = income - expense;
+			balance.textContent = net > 0 ? net.toLocaleString() : '0';
+		}
+		function renderEntries() {
+			const filter = document.querySelector('input[name="filter"]:checked').value;
+			let filtered = entries;
+			if (filter !== 'all') filtered = entries.filter(e => e.type === filter);
+			entriesList.innerHTML = '';
+			filtered.forEach(entry => {
+				const tr = document.createElement('tr');
+				tr.innerHTML = `
+					<td class="py-2 px-3">${entry.description}</td>
+					<td class="py-2 px-3 text-right">${entry.amount.toLocaleString()}</td>
+					<td class="py-2 px-3 text-center">${entry.type.charAt(0).toUpperCase()}</td>
+					<td class="py-2 px-3 text-center">
+						<button onclick="editEntry('${entry.id}')" class="mx-1" title="Edit">
+							<img src="assets/edit-icon.svg" alt="Edit" class="h-3 w-4 inline" />
+						</button>
+						<button onclick="deleteEntry('${entry.id}')" class="mx-1" title="Delete">
+							<img src="assets/delete-icon.svg" alt="Delete" class="h-3 w-4 inline" />
+						</button>
+					</td>
+				`;
+				entriesList.appendChild(tr);
+			});
+		}
+		entryForm.onsubmit = function(e) {
+			e.preventDefault();
+			const desc = description.value.trim();
+			const amt = parseFloat(amount.value);
+			const typ = type.value;
+			if (!desc || isNaN(amt) || amt <= 0) return;
+			if (editId) {
+				const idx = entries.findIndex(e => e.id === editId);
+				if (idx > -1) entries[idx] = { id: editId, description: desc, amount: amt, type: typ };
+				editId = null;
+			} else {
+				entries.push({ id: Date.now().toString(), description: desc, amount: amt, type: typ });
+			}
+			saveEntries();
+			renderEntries();
+			updateTotals();
+			clearInputs();
+		};
+		function editEntry(id) {
+			const entry = entries.find(e => e.id === id);
+			if (entry) {
+				description.value = entry.description;
+				amount.value = entry.amount;
+				type.value = entry.type;
+				editId = id;
+			}
+		}
+		function deleteEntry(id) {
+			entries = entries.filter(e => e.id !== id);
+			saveEntries();
+			renderEntries();
+			updateTotals();
+			clearInputs();
+		}
+		function resetForm() {
+			entries = [];
+			saveEntries();
+			renderEntries();
+			updateTotals();
+			clearInputs();
+		}
+		function clearInputs() {
+			description.value = '';
+			amount.value = '';
+			type.value = 'income';
+			editId = null;
+		}
+		// Initial load
+		loadEntries();
+		renderEntries();
+		updateTotals();
+	</script>
+</body>
+</html>
