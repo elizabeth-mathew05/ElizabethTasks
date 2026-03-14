@@ -5,9 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game - Card UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* 3D card container */
+      .memory-card {
+        perspective: 800px;
+        transform-style: preserve-3d;
+      }
+
+      /* Inner element rotates to create the flip animation */
+      .memory-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        will-change: transform;
+        transition: transform 0.45s ease;
+      }
+
+      .memory-card.is-flipped .memory-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      /* Shared styles for both card faces */
+      .memory-card-face {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+
+      .memory-card-front {
+        transform: rotateY(180deg) translateZ(1px);
+        -webkit-transform: rotateY(180deg) translateZ(1px);
+      }
+
+      @media (max-width: 480px) {
+        .game-wrapper {
+          margin-top: 1rem;
+          padding: 1rem;
+        }
+
+        #gameBoard {
+          gap: 0.55rem;
+        }
+      }
+    </style>
   </head>
   <body class="bg-gradient-to-br from-pink-100 to-purple-200 min-h-screen">
-    <div class="max-w-xl mx-auto mt-10 p-6 bg-white rounded-3xl shadow-2xl">
+    <div class="game-wrapper max-w-xl mx-auto mt-10 p-6 bg-white rounded-3xl shadow-2xl">
       <div
         class="flex flex-col sm:flex-row sm:justify-between items-center mb-8 gap-2"
       >
@@ -21,16 +71,33 @@
           Restart
         </button>
       </div>
-      <div id="gameBoard" class="grid grid-cols-4 gap-4"></div>
+      <p id="statusText" class="text-purple-700 text-sm sm:text-base mb-4">
+        Pairs found: 0/8
+      </p>
+      <div id="gameBoard" class="grid grid-cols-4 gap-3 sm:gap-4"></div>
     </div>
     <script>
+      // --------------------------------------------
+      // Memory Game Data + State
+      // --------------------------------------------
+
+      // Eight symbols = 8 matching pairs.
       const symbols = ["😀", "😂", "😍", "😎", "😭", "😡", "😱", "🤩"];
+
+      // Deck and live game state.
       let cards = [];
       let flipped = [];
-      let matched = [];
+      let matchedPairs = 0;
+      // Prevent extra clicks while checking a pair.
+      let isChecking = false;
+
       const gameBoard = document.getElementById("gameBoard");
       const restartBtn = document.getElementById("restartBtn");
+      const statusText = document.getElementById("statusText");
 
+      // --------------------------------------------
+      // Utility: Fisher-Yates shuffle
+      // --------------------------------------------
       function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -39,6 +106,9 @@
         return array;
       }
 
+      // --------------------------------------------
+      // Game setup / restart
+      // --------------------------------------------
       function setupBoard() {
         cards = shuffle([...symbols, ...symbols]).map((symbol, idx) => ({
           id: idx,
@@ -46,53 +116,99 @@
           flipped: false,
           matched: false,
         }));
+
         flipped = [];
-        matched = [];
+        matchedPairs = 0;
+        isChecking = false;
+        updateStatus();
         renderBoard();
       }
 
+      // --------------------------------------------
+      // Rendering
+      // --------------------------------------------
       function renderBoard() {
         gameBoard.innerHTML = "";
+
         cards.forEach((card) => {
-          const cardDiv = document.createElement("div");
-          cardDiv.className = `relative flex items-center justify-center aspect-square w-full max-w-[80px] sm:max-w-[100px] rounded-2xl shadow-lg cursor-pointer transition-transform duration-300 ${card.flipped || card.matched ? "bg-gradient-to-br from-purple-200 to-pink-100 border-2 border-purple-400" : "bg-purple-400"} `;
-          cardDiv.innerHTML = `
-          <span class="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl transition-opacity duration-300 ${card.flipped || card.matched ? "opacity-100" : "opacity-0"}">${card.symbol}</span>
-          <span class="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl text-white ${card.flipped || card.matched ? "opacity-0" : "opacity-100"}">🂠</span>
-        `;
-          cardDiv.onclick = () => handleFlip(card.id);
-          gameBoard.appendChild(cardDiv);
+          const cardButton = document.createElement("button");
+          const visible = card.flipped || card.matched;
+
+          cardButton.type = "button";
+          cardButton.className = "memory-card relative aspect-square w-full rounded-2xl shadow-lg";
+          cardButton.classList.toggle("is-flipped", visible);
+          cardButton.setAttribute("aria-label", "Memory card");
+          cardButton.disabled = card.matched;
+
+          cardButton.innerHTML = `
+            <div class="memory-card-inner">
+              <div class="memory-card-face memory-card-back text-2xl sm:text-3xl text-white bg-gradient-to-br from-purple-500 to-purple-600">🂠</div>
+              <div class="memory-card-face memory-card-front text-3xl sm:text-4xl bg-gradient-to-br from-purple-200 to-pink-100 border-2 border-purple-400">${card.symbol}</div>
+            </div>
+          `;
+
+          cardButton.onclick = () => handleFlip(card.id);
+          gameBoard.appendChild(cardButton);
         });
       }
 
+      // --------------------------------------------
+      // Gameplay logic
+      // --------------------------------------------
+
+      // Handles one card click and flips the card.
       function handleFlip(id) {
+        if (isChecking) return;
+
         const card = cards[id];
         if (card.flipped || card.matched || flipped.length === 2) return;
+
         card.flipped = true;
         flipped.push(id);
         renderBoard();
+
+        // Compare cards after the second selection.
         if (flipped.length === 2) {
+          isChecking = true;
           setTimeout(checkMatch, 700);
         }
       }
 
+      // Checks whether two flipped cards match.
       function checkMatch() {
         const [id1, id2] = flipped;
+
         if (cards[id1].symbol === cards[id2].symbol) {
           cards[id1].matched = true;
           cards[id2].matched = true;
+          matchedPairs += 1;
         } else {
           cards[id1].flipped = false;
           cards[id2].flipped = false;
         }
+
         flipped = [];
+        isChecking = false;
+        updateStatus();
         renderBoard();
       }
 
+      // Updates progress text for the player.
+      function updateStatus() {
+        if (matchedPairs === symbols.length) {
+          statusText.textContent = "You matched all pairs. Great job!";
+          return;
+        }
+
+        statusText.textContent = `Pairs found: ${matchedPairs}/${symbols.length}`;
+      }
+
+      // Restart button resets and reshuffles everything.
       restartBtn.onclick = function () {
         setupBoard();
       };
 
+      // Initial game load.
       setupBoard();
     </script>
   </body>
