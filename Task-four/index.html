@@ -8,40 +8,100 @@
     <style>
       /* 3D card container */
       .memory-card {
-        perspective: 800px;
-        transform-style: preserve-3d;
+        perspective: 900px;
+        position: relative;
+        overflow: visible;
+        min-height: 80px;
+        height: 120px;
+        max-height: 160px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+        border-radius: 1.1rem;
+        background: transparent;
       }
 
-      /* Inner element rotates to create the flip animation */
+      /* Card container for 3D perspective */
+      .memory-card {
+        perspective: 800px;
+        position: relative;
+        overflow: visible;
+        min-height: 80px;
+        height: 100px;
+        max-height: 140px;
+      }
+
+      /* Inner element rotates to create the left-to-right flip animation */
       .memory-card-inner {
         position: relative;
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
         -webkit-transform-style: preserve-3d;
-        will-change: transform;
-        transition: transform 0.45s ease;
+        z-index: 1;
+        transition: transform 0.25s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.2s, scale 0.2s;
+        will-change: transform, box-shadow, scale;
       }
 
-      .memory-card.is-flipped .memory-card-inner {
-        transform: rotateY(180deg);
+      .memory-card.turning .memory-card-inner {
+        transform: rotateY(80deg) scale(1.09);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.25), 0 3px 12px rgba(0,0,0,0.15);
+        transition: transform 0.22s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.18s, scale 0.18s;
       }
+      .memory-card.is-flipped .memory-card-inner {
+        transform: rotateY(180deg) scale(1.01);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+        transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s, scale 0.2s;
+      }
+
+
+
+      /* Remove duplicate .memory-card-inner block */
 
       /* Shared styles for both card faces */
       .memory-card-face {
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 1rem;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+        pointer-events: none;
+        box-shadow: 0 2px 8px rgba(80,0,120,0.08);
+        font-size: 2.2rem;
+        font-weight: bold;
+        border: 2.5px solid #fffbe6;
+      }
+
+      .memory-card-back {
+        background: #ffd600;
+        color: #222;
+        z-index: 2;
+        transform: rotateY(0deg);
+        font-size: 2.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+        border: none;
       }
 
       .memory-card-front {
-        transform: rotateY(180deg) translateZ(1px);
-        -webkit-transform: rotateY(180deg) translateZ(1px);
+        background: #fffbe6;
+        border: none;
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        z-index: 3;
+        color: #222;
+        font-size: 2.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
       }
 
       @media (max-width: 480px) {
@@ -78,26 +138,14 @@
     </div>
     <script>
       // --------------------------------------------
-      // Memory Game Data + State
-      // --------------------------------------------
-
-      // Eight symbols = 8 matching pairs.
       const symbols = ["😀", "😂", "😍", "😎", "😭", "😡", "😱", "🤩"];
-
-      // Deck and live game state.
       let cards = [];
       let flipped = [];
       let matchedPairs = 0;
-      // Prevent extra clicks while checking a pair.
       let isChecking = false;
-
       const gameBoard = document.getElementById("gameBoard");
       const restartBtn = document.getElementById("restartBtn");
       const statusText = document.getElementById("statusText");
-
-      // --------------------------------------------
-      // Utility: Fisher-Yates shuffle
-      // --------------------------------------------
       function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -105,10 +153,6 @@
         }
         return array;
       }
-
-      // --------------------------------------------
-      // Game setup / restart
-      // --------------------------------------------
       function setupBoard() {
         cards = shuffle([...symbols, ...symbols]).map((symbol, idx) => ({
           id: idx,
@@ -116,68 +160,71 @@
           flipped: false,
           matched: false,
         }));
-
         flipped = [];
         matchedPairs = 0;
         isChecking = false;
         updateStatus();
         renderBoard();
       }
-
-      // --------------------------------------------
-      // Rendering
-      // --------------------------------------------
       function renderBoard() {
         gameBoard.innerHTML = "";
-
         cards.forEach((card) => {
-          const cardButton = document.createElement("button");
-          const visible = card.flipped || card.matched;
-
-          cardButton.type = "button";
-          cardButton.className = "memory-card relative aspect-square w-full rounded-2xl shadow-lg";
-          cardButton.classList.toggle("is-flipped", visible);
-          cardButton.setAttribute("aria-label", "Memory card");
-          cardButton.disabled = card.matched;
-
-          cardButton.innerHTML = `
-            <div class="memory-card-inner">
-              <div class="memory-card-face memory-card-back text-2xl sm:text-3xl text-white bg-gradient-to-br from-purple-500 to-purple-600">🂠</div>
-              <div class="memory-card-face memory-card-front text-3xl sm:text-4xl bg-gradient-to-br from-purple-200 to-pink-100 border-2 border-purple-400">${card.symbol}</div>
-            </div>
-          `;
-
-          cardButton.onclick = () => handleFlip(card.id);
-          gameBoard.appendChild(cardButton);
+          const cardDiv = document.createElement("div");
+          cardDiv.className = "memory-card relative aspect-square w-full rounded-2xl shadow-lg";
+          if (card.flipped || card.matched) {
+            cardDiv.classList.add("is-flipped");
+          }
+          const innerDiv = document.createElement("div");
+          innerDiv.className = "memory-card-inner";
+          const backDiv = document.createElement("div");
+          backDiv.className = "memory-card-face memory-card-back text-2xl sm:text-3xl text-white bg-gradient-to-br from-purple-500 to-purple-600";
+          backDiv.textContent = "🂠";
+          const frontDiv = document.createElement("div");
+          frontDiv.className = "memory-card-face memory-card-front text-3xl sm:text-4xl bg-gradient-to-br from-purple-200 to-pink-100 border-2 border-purple-400";
+          frontDiv.textContent = card.symbol;
+          innerDiv.appendChild(backDiv);
+          innerDiv.appendChild(frontDiv);
+          cardDiv.appendChild(innerDiv);
+          const clickBtn = document.createElement("button");
+          clickBtn.type = "button";
+          clickBtn.className = "absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10";
+          clickBtn.setAttribute("aria-label", "Memory card");
+          clickBtn.disabled = card.flipped || card.matched || isChecking;
+          clickBtn.onclick = () => handleFlip(card.id);
+          cardDiv.appendChild(clickBtn);
+          gameBoard.appendChild(cardDiv);
         });
       }
-
-      // --------------------------------------------
-      // Gameplay logic
-      // --------------------------------------------
-
-      // Handles one card click and flips the card.
       function handleFlip(id) {
         if (isChecking) return;
-
         const card = cards[id];
         if (card.flipped || card.matched || flipped.length === 2) return;
-
-        card.flipped = true;
-        flipped.push(id);
-        renderBoard();
-
-        // Compare cards after the second selection.
-        if (flipped.length === 2) {
-          isChecking = true;
-          setTimeout(checkMatch, 700);
+        const cardDivs = document.querySelectorAll('.memory-card');
+        const cardDiv = cardDivs[id];
+        if (cardDiv) {
+          cardDiv.classList.add('turning');
+          setTimeout(() => {
+            cardDiv.classList.remove('turning');
+            card.flipped = true;
+            flipped.push(id);
+            renderBoard();
+            if (flipped.length === 2) {
+              isChecking = true;
+              setTimeout(checkMatch, 700);
+            }
+          }, 250);
+        } else {
+          card.flipped = true;
+          flipped.push(id);
+          renderBoard();
+          if (flipped.length === 2) {
+            isChecking = true;
+            setTimeout(checkMatch, 700);
+          }
         }
       }
-
-      // Checks whether two flipped cards match.
       function checkMatch() {
         const [id1, id2] = flipped;
-
         if (cards[id1].symbol === cards[id2].symbol) {
           cards[id1].matched = true;
           cards[id2].matched = true;
@@ -186,29 +233,21 @@
           cards[id1].flipped = false;
           cards[id2].flipped = false;
         }
-
         flipped = [];
         isChecking = false;
         updateStatus();
         renderBoard();
       }
-
-      // Updates progress text for the player.
       function updateStatus() {
         if (matchedPairs === symbols.length) {
           statusText.textContent = "You matched all pairs. Great job!";
           return;
         }
-
         statusText.textContent = `Pairs found: ${matchedPairs}/${symbols.length}`;
       }
-
-      // Restart button resets and reshuffles everything.
       restartBtn.onclick = function () {
         setupBoard();
       };
-
-      // Initial game load.
       setupBoard();
     </script>
   </body>
